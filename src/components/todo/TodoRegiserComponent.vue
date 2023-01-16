@@ -9,14 +9,20 @@
 <script setup>
 
 import {ref} from "vue";
+import axios from "axios";
 
 const todo = ref({title:'AAA', writer:'user00', dueDate:'2023-01-22'})
 
 
-const handleClickRegister = () => {
+const handleClickRegister = async () => {
 
+  await axios.post('http://localhost:8080/api/todos/', todo.value ).then(res => {
 
+    console.log(res.data)
 
+    alert("AAAA")
+
+  })
 
 }
 

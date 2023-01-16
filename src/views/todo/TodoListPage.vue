@@ -11,7 +11,7 @@
       <h1>Loading.............</h1>
     </template>
     <template #default>
-      <TodoListComponent :query="query" @movePage="movePage" :key="componentKey"></TodoListComponent>
+      <TodoListComponent :query="query" @movePage="movePage"  @moveRead="moveRead" :key="componentKey"></TodoListComponent>
     </template>
   </Suspense>
 
@@ -43,6 +43,16 @@ const movePage = (pageNumber) => {
 
   componentKey.value = Date.now()
 }
+
+const moveRead = (tno) => {
+
+
+
+  router.push({ name: 'TodoReadPage', query: query.value , params:{id:tno} })
+
+
+}
+
 
 </script>
 

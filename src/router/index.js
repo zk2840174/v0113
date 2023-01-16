@@ -26,12 +26,38 @@ const routes = [
     name: 'TodoLRegisterPage',
     component: () => import("@/views/todo/TodoRegisterPage.vue")
   },
+  {
+    path: '/todo/read/:id',
+    name: 'TodoReadPage',
+    component: () => import("@/views/todo/TodoReadPage.vue"),
+    meta: {requireAuth:true}
+  },
+  {
+    path: '/login',
+    name: 'LoginPage',
+    component: () => import("@/views/LoginPage.vue")
+  },
 
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+})
+
+router.beforeEach((to,from) => {
+
+  if(to.meta.requireAuth){
+    console.log("requireAuth")
+
+    if(!localStorage.getItem("access")){
+
+      return "/login";
+    }
+
+
+  }
+
 })
 
 export default router

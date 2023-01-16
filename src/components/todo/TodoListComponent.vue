@@ -1,7 +1,7 @@
 <template>
 
   <ul>
-    <li v-for="todo in data.dtoList" :key="todo.tno">
+    <li v-for="todo in data.dtoList" :key="todo.tno" @click="() => emits('moveRead', todo.tno)">
       {{todo.tno}} - {{todo.title}}
     </li>
   </ul>
@@ -22,7 +22,7 @@ import axios from "axios";
 import {toRefs} from "vue";
 
 const props = defineProps(['query'])
-const emits = defineEmits(['movePage'])
+const emits = defineEmits(['movePage', 'moveRead'])
 
 
 console.log(props.query)
